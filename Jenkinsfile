@@ -1,10 +1,13 @@
 pipeline {
     agent any
+    def dockerImage
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                docker.withRegistry('https://cloud.canister.io:5000/miquelbar/', 'canister') {
+                    dockerImage = docker.build("code:${env.BUILD_ID}")
+                }
             }
         }
         stage('Test') {
@@ -15,6 +18,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                docker.withRegistry('https://cloud.canister.io:5000/miquelbar/', 'canister') {
+                    dockerImage.push()
+                }
             }
         }
     }
