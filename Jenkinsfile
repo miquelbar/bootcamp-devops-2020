@@ -21,9 +21,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 script {
-                    docker.withRegistry('https://cloud.canister.io:5000', 'canister') {
-                        dockerImage.push()
-                    }
+                    dockerImage.push()
                 }
             }
         }
