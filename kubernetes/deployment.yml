@@ -15,10 +15,10 @@ spec:
         app: code
     spec:
       containers:
-      - name: nginx
+      - name: application
         image: cloud.canister.io:5000/miquelbar/code:{{BUILD_ID}}
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
           name: http
       imagePullSecrets:
       - name: regcred
