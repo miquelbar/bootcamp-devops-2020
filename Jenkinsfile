@@ -1,6 +1,6 @@
+def dockerImage
 pipeline {
     agent any
-    def dockerImage
 
     stages {
         stage('Build') {
