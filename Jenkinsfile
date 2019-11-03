@@ -6,9 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.withRegistry('https://cloud.canister.io:5000', 'canister') {
-                        dockerImage = docker.build("miquelbar/code:${env.BUILD_ID}")
-                    }
+                    dockerImage = docker.build("miquelbar/code:${env.BUILD_ID}")
                 }
             }
         }
@@ -21,7 +19,9 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 script {
-                    dockerImage.push()
+                    docker.withRegistry('https://cloud.canister.io:5000', 'canister') {
+                        dockerImage.push()
+                    }
                 }
             }
         }
