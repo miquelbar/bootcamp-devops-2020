@@ -5,8 +5,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                docker.withRegistry('https://cloud.canister.io:5000/miquelbar/', 'canister') {
-                    dockerImage = docker.build("code:${env.BUILD_ID}")
+                script {
+                    docker.withRegistry('https://cloud.canister.io:5000/miquelbar/', 'canister') {
+                        dockerImage = docker.build("code:${env.BUILD_ID}")
+                    }
                 }
             }
         }
@@ -18,8 +20,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                docker.withRegistry('https://cloud.canister.io:5000/miquelbar/', 'canister') {
-                    dockerImage.push()
+                script {
+                    docker.withRegistry('https://cloud.canister.io:5000/miquelbar/', 'canister') {
+                        dockerImage.push()
+                    }
                 }
             }
         }
