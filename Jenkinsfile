@@ -27,7 +27,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 script {
-                    docker.withRegistry('https://cloud.canister.io:5000', 'canister') {
+                    docker.withRegistry('https://repo.treescale.com', 'canister') {
                         dockerImage.push()
                     }
                     sh "sed -i'' 's/{{BUILD_ID}}/${env.BRANCH_NAME}-${env.BUILD_ID}/g' kubernetes/deployment.yml"
