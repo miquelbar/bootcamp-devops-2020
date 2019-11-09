@@ -20,5 +20,10 @@ spec:
         ports:
         - containerPort: 8080
           name: http
+        env:
+        - name: APM_NAME
+          value: "bootcamp"
+        - name: ELASTIC_APM_SERVER_URL
+          value: http://apm.services
       imagePullSecrets:
       - name: regcred
