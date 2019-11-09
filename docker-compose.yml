@@ -13,3 +13,4 @@ services:
     - ENVIRONMENT=local
     - DEBUG=True
     - RELOADER=True
+    - APM_NAME=bootcamp
